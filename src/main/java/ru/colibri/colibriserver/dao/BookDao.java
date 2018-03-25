@@ -17,12 +17,11 @@ public interface BookDao extends CrudRepository<Book, Long> {
 
     List<Book> findByAuthor(String author);
 
-     Book findFirstByAuthor(String author);
+    Book findFirstByAuthor(String author);
 
-     Book findById(int id);
+    Book findById(int id);
 
-     void deleteById(int id);
-
+    void deleteById(int id);
 
 
     // пример кастомного запроса

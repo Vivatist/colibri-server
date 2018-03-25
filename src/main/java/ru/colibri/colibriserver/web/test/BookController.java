@@ -28,6 +28,8 @@ public class BookController {
 
     @RequestMapping(value = "/books/add", method = RequestMethod.POST)
     public String addBook(@ModelAttribute("book") Book book){
+        System.out.println(book.toString());
+        System.out.println(book.getId());
         if(book.getId() == 0){
             this.bookDao.save(book);
         }else {

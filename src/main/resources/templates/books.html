@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Books</title>
 </head>
 <body>
 <a href="/../index.html">На главную</a>
@@ -23,10 +23,10 @@
     </tr>
     <tr th:each="book: ${listBooks}">
         <td th:text="${book.id}"></td>
-        <td><a th:href="@{/bookdata/(id=${book.id})}" target="_blank" th:text="${book.getTitle()}">Book title'</a></td>
+        <td><a th:href="@{'/bookdata/' + ${book.id}}" target="_blank" th:text="${book.getTitle()}">Book title'</a></td>
         <td th:text="${book.getAuthor()}">Book author'</td>
         <td th:text="${book.getPrice()}">Book price'</td>
-        <td><a th:href="@{'/edit/' + ${book.id}}">Delete</a></td>
+        <td><a th:href="@{'/edit/' + ${book.id}}">Edit</a></td>
         <td><a th:href="@{'/remove/' + ${book.id}}">Delete</a></td>
     </tr>
 </table>
@@ -34,68 +34,47 @@
 
 <h1>Add a Book</h1>
 
-<!--<c:url var="addAction" value="/books/add"/>-->
-<!--<form:form action="${addAction}" commandName="book">-->
-<form action="/books/add" th:object="${book}" method="get">
-     <table>
+<form action="#" th:action="@{/books/add}" th:object="${book}" method="post">
+    <table>
 
-        <tr><td th:text="${book.getPrice()}">Book price'</td></tr>
-
-        <!--<c:if test="${!empty book.bookTitle}">-->
-            <!--<tr>-->
-                <!--<td>-->
-                    <!--<form:label path="id">-->
-                        <!--<spring:message text="ID"/>-->
-                    <!--</form:label>-->
-                <!--</td>-->
-                <!--<td>-->
-                    <!--<form:input path="id" readonly="true" size="8" disabled="true"/>-->
-                    <!--<form:hidden path="id"/>-->
-                <!--</td>-->
-            <!--</tr>-->
-        <!--</c:if>-->
-        <!--<tr>-->
-            <!--<td>-->
-                <!--<form:label path="bookTitle">-->
-                    <!--<spring:message text="Title"/>-->
-                <!--</form:label>-->
-            <!--</td>-->
-            <!--<td>-->
-                <!--<form:input path="bookTitle"/>-->
-            <!--</td>-->
-        <!--</tr>-->
-        <!--<tr>-->
-            <!--<td>-->
-                <!--<form:label path="bookAuthor">-->
-                    <!--<spring:message text="Author"/>-->
-                <!--</form:label>-->
-            <!--</td>-->
-            <!--<td>-->
-                <!--<form:input path="bookAuthor"/>-->
-            <!--</td>-->
-        <!--</tr>-->
-        <!--<tr>-->
-            <!--<td>-->
-                <!--<form:label path="price">-->
-                    <!--<spring:message text="Price"/>-->
-                <!--</form:label>-->
-            <!--</td>-->
-            <!--<td>-->
-                <!--<form:input path="price"/>-->
-            <!--</td>-->
-        <!--</tr>-->
-        <!--<tr>-->
-            <!--<td colspan="2">-->
-                <!--<c:if test="${!empty book.bookTitle}">-->
-                    <!--<input type="submit"-->
-                           <!--value="<spring:message text=" Edit Book"/>"/>-->
-                <!--</c:if>-->
-                <!--<c:if test="${empty book.bookTitle}">-->
-                    <!--<input type="submit"-->
-                           <!--value="<spring:message text=" Add Book"/>"/>-->
-                <!--</c:if>-->
-            <!--</td>-->
-        <!--</tr>-->
+        <tr th:if="${not #strings.isEmpty(book.getTitle())}">
+            <td>
+                <label for="bookId">ID:</label>
+            </td>
+            <td>
+                <input id=bookId type="text"  th:field="*{id}" th:readonly="true"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="bookTitle">Title:</label>
+            </td>
+            <td>
+                <input id="bookTitle" type="text"  th:field="*{title}" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="bookAuthor">Author:</label>
+            </td>
+            <td>
+                <input id="bookAuthor" type="text" th:field="*{author}">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="bookPrice">Price:</label>
+            </td>
+            <td>
+                <input id="bookPrice" type="text" th:field="*{price}">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="Add book" th:if="${ #strings.isEmpty(book.getTitle())}"/>
+                <input type="submit" value="Edit book" th:if="${not #strings.isEmpty(book.getTitle())}"/>
+            </td>
+        </tr>
     </table>
 </form>
 </body>
