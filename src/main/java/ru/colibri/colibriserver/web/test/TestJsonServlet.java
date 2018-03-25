@@ -42,6 +42,8 @@ public class TestJsonServlet {
         log.info(books.toString());
         log.debug("debug!");
 
+
+
         return books;
     }
 

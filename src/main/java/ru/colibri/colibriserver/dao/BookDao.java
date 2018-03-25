@@ -13,11 +13,17 @@ import java.util.List;
 @Transactional
 public interface BookDao extends CrudRepository<Book, Long> {
 
-     List<Book> findByAuthor(String author);
+    List<Book> findAllByOrderById();
+
+    List<Book> findByAuthor(String author);
 
      Book findFirstByAuthor(String author);
 
-     Book findById(int i);
+     Book findById(int id);
+
+     void deleteById(int id);
+
+
 
     // пример кастомного запроса
     @Query("SELECT u FROM Book u WHERE u.author = :param_author")
