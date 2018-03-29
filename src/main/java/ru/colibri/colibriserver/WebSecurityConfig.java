@@ -40,6 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Resource(name = "customUserDetailsService")
     private CustomUserDetailsService userDetailsService;
 
+    @Qualifier("dataSource")
     @Autowired
     private DataSource jdbcDatasource;
 
