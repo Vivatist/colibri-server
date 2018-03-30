@@ -3,20 +3,14 @@ package ru.colibri.colibriserver.web.test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import ru.colibri.colibriserver.domain.CustomUserDetailsService;
-import ru.colibri.colibriserver.domain.Role;
-import ru.colibri.colibriserver.domain.User;
+import ru.colibri.colibriserver.Security.CustomUserDetailsService;
 
 import javax.annotation.PostConstruct;
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @RequestMapping("/secure")
@@ -58,10 +52,6 @@ public class UserController {
         return user;
     }
 
-    @GetMapping("/error")
-    public @ResponseBody String getError() {
-        return "error";
-    }
 
     @GetMapping("/admin")
     public @ResponseBody Principal getAdmin(Principal admin) {

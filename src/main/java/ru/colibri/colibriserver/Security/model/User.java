@@ -1,7 +1,6 @@
-package ru.colibri.colibriserver.domain;
+package ru.colibri.colibriserver.Security.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import ru.colibri.colibriserver.Security.model.Role;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;

@@ -1,4 +1,4 @@
-package ru.colibri.colibriserver;
+package ru.colibri.colibriserver.Security.handler;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.AuthenticationException;

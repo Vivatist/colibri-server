@@ -10,9 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import ru.colibri.colibriserver.dao.BookDao;
-import ru.colibri.colibriserver.dao.RoleDao;
-import ru.colibri.colibriserver.dao.UserDao;
-import ru.colibri.colibriserver.domain.Role;
 import ru.colibri.colibriserver.model.Book;
 
 import java.util.List;

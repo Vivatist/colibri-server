@@ -1,7 +1,6 @@
-package ru.colibri.colibriserver.domain;
+package ru.colibri.colibriserver.Security.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
@@ -25,9 +24,7 @@ public class Role implements GrantedAuthority, Serializable {
     @ManyToMany(mappedBy = "roles")
     private List<User> users = new ArrayList<>();
 
-    public Role() {
-
-    }
+    public Role() {}
 
     public Role(String role) {
         this.role = role;

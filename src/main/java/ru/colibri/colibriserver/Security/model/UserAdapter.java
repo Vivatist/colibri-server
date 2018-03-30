@@ -1,7 +1,8 @@
-package ru.colibri.colibriserver.domain;
+package ru.colibri.colibriserver.Security.model;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import ru.colibri.colibriserver.Security.model.User;
 
 import java.util.Collection;
 import java.util.HashSet;
