@@ -1,4 +1,4 @@
-package ru.colibri.colibriserver.Security.model;
+package ru.colibri.colibriserver.security.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;

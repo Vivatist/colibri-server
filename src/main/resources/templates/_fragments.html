@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="header">
+    <title th:include=" :: #pageTitle">Layout Generic Title </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
+    <!--<script src="/webjars/jquery/3.2.1/jquery.min.js"></script>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+</head>
+
+
+<body>
+
+
+<div th:fragment="top_menu">
+
+
+    <style>
+        .navbar-brand {
+            padding: 0px;
+        }
+
+        .navbar-brand > img {
+            height: 100%;
+            padding: 15px;
+            width: auto;
+        }
+
+        /* EXAMPLE 5 - Logo with Text*/
+        .example5 .navbar-brand {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+
+        .example5 .navbar-brand > img {
+            padding: 7px 14px;
+        }
+
+    </style>
+
+
+    <div class="container example5">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target="#navbar5">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/">
+
+                        <img style="width: 64px" src="/images/logo64x50.png"
+                             alt="Colibri">Colibri
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse" id="navbar-main">
+                    <!-- Содержимое основной части -->
+                    <ul class="nav navbar-nav">
+                        <li><a href="/test">Тесты</a></li>
+                        <li><a href="/user">Юзер</a></li>
+                        <li><a href="/admin">Админ</a></li>
+                        <li><a href="/logout">Выход</a></li>
+                    </ul>
+                </div>
+                <!--/.nav-collapse -->
+            </div>
+            <!--/.container-fluid -->
+        </nav>
+
+    </div>
+
+</div>
+
+
+</body>
+</html>

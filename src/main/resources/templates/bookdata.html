@@ -3,30 +3,39 @@
 
 
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>Book data</title>
-
+<head th:include="_fragments :: header">
+    <title id="pageTitle">Colibri</title>
+    <!-- other elements you want to reference in your layout -->
 </head>
 <body>
-<div th:insert="~{_mainMenu :: top}"></div>
+<div th:insert="~{_fragments :: top_menu}"></div>
 <br>
 
-<h1>Book Details</h1>
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Информация о книге</h3>
+        </div>
+        <div class="panel-body">
 
-<table class="tg">
-    <tr>
-        <th width="80">ID</th>
-        <th width="120">Title</th>
-        <th width="120">Author</th>
-        <th width="120">Price</th>
-    </tr>
-    <tr>
-        <td th:text="${book.id}">ID'</td>
-        <td th:text="${book.title}">TITLE'</td>
-        <td th:text="${book.author}">PRICE'</td>
-        <td th:text="${book.price}">PRICE'</td>
-    </tr>
-</table>
+            <table class="table table-hover">
+                <tr>
+                    <th width="80">ID</th>
+                    <th width="120">Title</th>
+                    <th width="120">Author</th>
+                    <th width="120">Price</th>
+                </tr>
+                <tr>
+                    <td th:text="${book.id}">ID'</td>
+                    <td th:text="${book.title}">TITLE'</td>
+                    <td th:text="${book.author}">PRICE'</td>
+                    <td th:text="${book.price}">PRICE'</td>
+                </tr>
+            </table>
+
+
+        </div>
+    </div>
+</div>
 </body>
 </html>

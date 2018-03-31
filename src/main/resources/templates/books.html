@@ -1,81 +1,113 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <meta charset="UTF-8">
-    <title>Books</title>
+<head th:include="_fragments :: header">
+    <title id="pageTitle">Colibri</title>
+    <!-- other elements you want to reference in your layout -->
 </head>
+
+
 <body>
-<div th:insert="~{_mainMenu :: top}"></div>
 
-<br/>
-<br/>
+<div th:insert="~{_fragments :: top_menu}"></div>
 
-<h1>Book List</h1>
-<table th:if="${not #lists.isEmpty(listBooks)}" class="tg">
-    <tr>
-        <th width="80">ID</th>
-        <th width="320">Title</th>
-        <th width="220">Author</th>
-        <th width="120">Price</th>
-        <th width="60">Edit</th>
-        <th width="60">Delete</th>
-    </tr>
-    <tr th:each="book: ${listBooks}">
-        <td th:text="${book.id}"></td>
-        <td><a th:href="@{'/bookdata/' + ${book.id}}" target="_blank" th:text="${book.getTitle()}">Book title'</a></td>
-        <td th:text="${book.getAuthor()}">Book author'</td>
-        <td th:text="${book.getPrice()}">Book price'</td>
-        <td><a th:href="@{'/edit/' + ${book.id}}">Edit</a></td>
-        <td><a th:href="@{'/remove/' + ${book.id}}">Delete</a></td>
-    </tr>
-</table>
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Список книг</h3>
+        </div>
+        <div class="panel-body">
+
+            <table class="table table-hover" th:if="${not #lists.isEmpty(listBooks)}">
+                <tr>
+                    <th width="80">ID</th>
+                    <th width="320">Название</th>
+                    <th width="220">Автор</th>
+                    <th width="120">Цена</th>
+                    <th width="60">Редактировать</th>
+                    <th width="60">Удалить</th>
+                </tr>
+                <tr th:each="book: ${listBooks}">
+                    <td th:text="${book.id}"></td>
+                    <td><a th:href="@{'/bookdata/' + ${book.id}}" target="_blank" th:text="${book.getTitle()}">Book
+                        title'</a></td>
+                    <td th:text="${book.getAuthor()}">Book author'</td>
+                    <td th:text="${book.getPrice()}">Book price'</td>
+                    <td><a th:href="@{'/edit/' + ${book.id}}">Edit</a></td>
+                    <td><a th:href="@{'/remove/' + ${book.id}}">Delete</a></td>
+                </tr>
+            </table>
 
 
-<h1>Add a Book</h1>
+        </div>
+    </div>
+</div>
 
-<form action="#" th:action="@{/books/add}" th:object="${book}" method="post">
-    <table>
 
-        <tr th:if="${not #strings.isEmpty(book.getTitle())}">
-            <td>
-                <label for="bookId">ID:</label>
-            </td>
-            <td>
-                <input id=bookId type="text"  th:field="*{id}" th:readonly="true"/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label for="bookTitle">Title:</label>
-            </td>
-            <td>
-                <input id="bookTitle" type="text"  th:field="*{title}" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label for="bookAuthor">Author:</label>
-            </td>
-            <td>
-                <input id="bookAuthor" type="text" th:field="*{author}">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label for="bookPrice">Price:</label>
-            </td>
-            <td>
-                <input id="bookPrice" type="text" th:field="*{price}">
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <input type="submit" value="Add book" th:if="${ #strings.isEmpty(book.getTitle())}"/>
-                <input type="submit" value="Edit book" th:if="${not #strings.isEmpty(book.getTitle())}"/>
-            </td>
-        </tr>
-    </table>
-</form>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Добавить/редактировать книгу</h3>
+                </div>
+                <div class="panel-body">
+                    <form class="form-horizontal" action="#" th:action="@{/books/add}" th:object="${book}"
+                          method="post">
+
+                        <div class="form-group" th:if="${not #strings.isEmpty(book.getTitle())}">
+                            <label for="bookId" class="col-sm-2 control-label">ID</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="bookId" placeholder="ID" th:field="*{id}"
+                                       th:readonly="true">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="bookTitle" class="col-sm-2 control-label">Название</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="bookTitle" placeholder="Название"
+                                       th:field="*{title}">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bookAuthor" class="col-sm-2 control-label">Автор</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="bookAuthor" placeholder="Автор"
+                                       th:field="*{author}">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bookPrice" class="col-sm-2 control-label">Цена</label>
+                            <div class="col-sm-10">
+                                <input type="number" class="form-control" id="bookPrice" placeholder="Цена"
+                                       th:field="*{price}">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button th:if="${ #strings.isEmpty(book.getTitle())}" type="submit"
+                                        class="btn btn-success">Добавить
+                                </button>
+                                <button th:if="${not #strings.isEmpty(book.getTitle())}" type="submit"
+                                        class="btn btn-success">Редактировать
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 </body>
 </html>

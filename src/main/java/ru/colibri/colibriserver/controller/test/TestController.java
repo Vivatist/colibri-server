@@ -1,4 +1,4 @@
-package ru.colibri.colibriserver.web.test;
+package ru.colibri.colibriserver.controller.test;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,12 +45,7 @@ public class TestController {
 
     @RequestMapping("/test")
     public String showHello(Model model) {
-        System.out.println("Servlet HELLO-WORLD");
-        model.addAttribute("message", "ТЕСТ");
-
-        //Role role = new Role();
-
-        //role.setRole("Admin");
+        model.addAttribute("message", "ТЕСТ Ок");
 
         return "test";
     }

@@ -2,29 +2,32 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 
-
-<head>
-    <title>Тестовая страница</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" th:href="@{/css/main.css}" href="/../css/main.css"/>
-
+<head th:include="_fragments :: header">
+    <title id="pageTitle">Colibri</title>
+    <!-- other elements you want to reference in your layout -->
 </head>
 
 
 <body>
+<div th:insert="~{_fragments :: top_menu}"></div>
+
+
 <div class="container">
-
-    <div class="starter-template">
-        <h1>Тест CSS, Thymeleaf и работы сервлетов</h1>
-        <h2>
-            <span th:text="'Переданный текст из Java: ' + ${message}"></span>
-        </h2>
+    <div class="panel panel-default">
+        <div th:text="'Тесты на время разработки, необходимо отключить в продакшн. Тест передачи данных из кода: ' + ${message}"
+             class="panel-heading">Панель с заголовком
+        </div>
+        <div class="panel-body">
+            <ul class="nav">
+                <li><a href="/books">Библиотека</a></li>
+                <li><a href="/test_json">JSON</a></li>
+            </ul>
+        </div>
     </div>
-
 </div>
 
-</body>
 
+</body>
 
 
 </html>

@@ -1,6 +1,4 @@
-package ru.colibri.colibriserver.Security.model;
-
-import ru.colibri.colibriserver.Security.model.Role;
+package ru.colibri.colibriserver.security.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;

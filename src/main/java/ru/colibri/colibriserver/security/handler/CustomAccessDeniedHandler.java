@@ -1,4 +1,4 @@
-package ru.colibri.colibriserver.Security.handler;
+package ru.colibri.colibriserver.security.handler;
 
 import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
