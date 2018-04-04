@@ -10,7 +10,10 @@ import java.util.Set;
 public interface UserRepository extends CrudRepository<User, Long> {
 
     User findByUsername(String username);
+
     Set<User> findAllByOrderById();
+
     User findById(int id);
 
+    void removeById(int id);
 }

@@ -3,9 +3,7 @@ package ru.colibri.colibriserver.security.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -17,8 +15,8 @@ public class User implements Serializable {
     @Column(name = "user_id")
     private Integer id;
 
-    @Column(name = "Name")
-    private String name;
+    @Column(name = "email")
+    private String email;
 
     @NotEmpty
     @Column(name = "username", unique = true, nullable = false)
@@ -32,19 +30,19 @@ public class User implements Serializable {
     private boolean enabled;
 
     @NotEmpty
-    @ManyToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade=CascadeType.MERGE)
     @JoinTable(name = "security_user_role",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
 
     public User() {
     }
 
-    public User(String name, String username, String password, boolean enabled) {
+    public User(String email, String username, String password, boolean enabled) {
         super();
-        this.name = name;
+        this.email = email;
         this.username = username;
         this.password = password;
         this.enabled = enabled;
@@ -52,12 +50,9 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        String stringRole = null;
-        for (Role role : roles) {
-            stringRole += role.toString() + ",";
-        }
-        return "id: " + id.toString() +
-                ", name: " + name +
+
+        return "id: " + id +
+                ", name: " + email +
                 ", username: " + username +
                 ", password: " + password +
                 ", enabled: " + enabled +
@@ -79,12 +74,12 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getEmail() {
+        return email;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {

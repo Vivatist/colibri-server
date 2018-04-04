@@ -26,8 +26,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/readme.txt", "/css/*").permitAll()
-                .anyRequest().authenticated()       //закрыть доступ
-               // .anyRequest().permitAll()         //открыть доступ
+               // .anyRequest().authenticated()       //закрыть доступ
+                .anyRequest().permitAll()         //открыть доступ
                 .and()
                 .formLogin().loginPage("/login").permitAll()
                 .and()

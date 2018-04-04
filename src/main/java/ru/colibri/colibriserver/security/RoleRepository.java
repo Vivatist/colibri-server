@@ -14,7 +14,9 @@ import java.util.Set;
 public interface RoleRepository extends CrudRepository<Role, Long> {
 
 
-    public Set<Role> findAllByOrderById();
+    Set<Role> findAllByOrderById();
 
-    public Role findById(Integer id) throws DataAccessException;
+    Role findById(Integer id) throws DataAccessException;
+
+    Role findByRole(String roleName);
 }
