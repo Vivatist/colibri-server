@@ -19,14 +19,15 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private CustomUserDetailsService userService;
+    private CustomUserDetailsService customUserDetailsService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
                 .antMatchers("/readme.txt", "/css/*").permitAll()
-                .anyRequest().authenticated()
+                .anyRequest().authenticated()       //закрыть доступ
+               // .anyRequest().permitAll()         //открыть доступ
                 .and()
                 .formLogin().loginPage("/login").permitAll()
                 .and()
@@ -41,7 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
-                .userDetailsService(userService)
+                .userDetailsService(customUserDetailsService)
                 .passwordEncoder(bcryptPasswordEncoder());
     }
 

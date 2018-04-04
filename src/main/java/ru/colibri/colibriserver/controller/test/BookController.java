@@ -17,7 +17,6 @@ public class BookController {
     @Autowired
     private BookDao bookDao;
 
-
     @RequestMapping(value = "books", method = RequestMethod.GET)
     public String listBooks(Model model){
         model.addAttribute("book", new Book());

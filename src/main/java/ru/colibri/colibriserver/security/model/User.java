@@ -4,38 +4,43 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-@Entity(name = "security_users")
+@Entity
+@Table(name = "security_users")
 public class User implements Serializable {
     private static final long serialVersionUID = -3218171099657412026L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private Integer id;
 
-    @Column(name="Name")
+    @Column(name = "Name")
     private String name;
 
     @NotEmpty
-    @Column(name="username", unique = true, nullable = false)
+    @Column(name = "username", unique = true, nullable = false)
     private String username;
-    @NotEmpty
 
-    @Column(name="password")
+    @NotEmpty
+    @Column(name = "password")
     private String password;
 
-    @Column(name="enabled")
+    @Column(name = "enabled")
     private boolean enabled;
 
+    @NotEmpty
+    @ManyToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinTable(name = "security_user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "security_user_role", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "role_id"))
-    private List<Role> roles = new ArrayList<>();
 
-
-    public User() {}
+    public User() {
+    }
 
     public User(String name, String username, String password, boolean enabled) {
         super();
@@ -43,6 +48,27 @@ public class User implements Serializable {
         this.username = username;
         this.password = password;
         this.enabled = enabled;
+    }
+
+    @Override
+    public String toString() {
+        String stringRole = null;
+        for (Role role : roles) {
+            stringRole += role.toString() + ",";
+        }
+        return "id: " + id.toString() +
+                ", name: " + name +
+                ", username: " + username +
+                ", password: " + password +
+                ", enabled: " + enabled +
+                ", roles " + roles.toString();
+
+
+    }
+
+
+    public boolean containtsRole(Role r){
+        return true;
     }
 
     public Integer getId() {
@@ -85,11 +111,11 @@ public class User implements Serializable {
         this.enabled = enabled;
     }
 
-    public List<Role> getRoles() {
+    public Set<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<Role> roles) {
+    public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
 

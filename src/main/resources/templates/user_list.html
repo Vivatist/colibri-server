@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="_fragments :: header">
+    <title id="pageTitle">Colibri</title>
+    <!-- other elements you want to reference in your layout -->
+</head>
+
+<style type="text/css">
+    .label-pill {
+        padding-right: .6em;
+        padding-left: .6em;
+        border-radius: 10rem;
+    }
+
+</style>
+
+
+<body>
+
+<div th:insert="~{_fragments :: top_menu}"></div>
+
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Список пользователей</h3>
+        </div>
+        <div class="panel-body">
+
+            <table class="table table-hover" th:if="${not #lists.isEmpty(listUsers)}">
+                <tr>
+                    <th width="80">ID</th>
+                    <th width="320">Имя</th>
+                    <th width="60">Редактировать</th>
+                    <th width="60">Удалить</th>
+                    <th width="100">Роли</th>
+                </tr>
+                <tr th:each="custom_user: ${listUsers}">
+                    <td th:text="${custom_user.id}">User id'</td>
+                    <td><a th:text="${custom_user.getName()}">User name'</a></td>
+                    <td><a th:href="@{'/admin/user_edit/' + ${custom_user.id}}">Edit</a></td>
+                    <td><a th:href="@{'/remove/' + ${custom_user.id}}">Delete</a></td>
+                    <td><span th:each="custom_role: *{custom_user.roles}"><span  th:text="*{custom_role.role}" class="label label-pill label-success">ROLE NAME'</span> </span></td>
+                </tr>
+            </table>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+</body>
+</html>

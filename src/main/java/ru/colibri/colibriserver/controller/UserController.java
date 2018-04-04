@@ -1,4 +1,4 @@
-package ru.colibri.colibriserver.controller.test;
+package ru.colibri.colibriserver.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;

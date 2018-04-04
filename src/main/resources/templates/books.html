@@ -29,7 +29,7 @@
                 </tr>
                 <tr th:each="book: ${listBooks}">
                     <td th:text="${book.id}"></td>
-                    <td><a th:href="@{'/bookdata/' + ${book.id}}" target="_blank" th:text="${book.getTitle()}">Book
+                    <td><a th:href="@{'/bookdata/' + ${book.id}}" th:text="${book.getTitle()}">Book
                         title'</a></td>
                     <td th:text="${book.getAuthor()}">Book author'</td>
                     <td th:text="${book.getPrice()}">Book price'</td>

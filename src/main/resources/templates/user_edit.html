@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<html>
+<head th:include="_fragments :: header">
+    <title id="pageTitle">Colibri</title>
+    <!-- other elements you want to reference in your layout -->
+</head>
+
+<body>
+
+<div th:insert="~{_fragments :: top_menu}"></div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Изменение пользователя</h3>
+                </div>
+                <div class="panel-body">
+                    <form class="form-horizontal" action="#" th:action="@{/admin/user_edit/add}" th:object="${user}"
+                          method="post">
+
+                        <div class="form-group" th:if="${not #strings.isEmpty(user.username)}">
+                            <label for="userId" class="col-sm-2 control-label">ID</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="userId" placeholder="ID" th:field="*{id}"
+                                       th:readonly="true">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="userUsername" class="col-sm-2 control-label">Логин</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="userUsername" placeholder="Логин"
+                                       th:field="*{username}">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="userPassword" class="col-sm-2 control-label">Пароль</label>
+                            <div class="col-sm-10">
+                                <input type="password" th:field="*{password}" class="form-control" id="userPassword" placeholder="********">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="userName" class="col-sm-2 control-label">Имя</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="userName" placeholder="Имя"
+                                       th:field="*{name}">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" th:field="*{enabled}"> Активен
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="userRoles">Роли</label>
+                            <div class="col-sm-10">
+                                <select id="userRoles" class="form-control" multiple="multiple" th:field="*{roles}">
+                                    <option th:each="s : ${userRoles}"
+                                            th:value="${s.id}"
+                                            th:text="${s.role}">
+                                    </option>
+                                </select>
+
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button th:if="${ #strings.isEmpty(user.username)}" type="submit"
+                                        class="btn btn-success">Добавить
+                                </button>
+                                <button th:if="${not #strings.isEmpty(user.username)}" type="submit"
+                                        class="btn btn-success">Редактировать
+                                </button>
+                                <span> или </span><a href="/admin/user_list">Отмена</a>
+                            </div>
+                        </div>
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

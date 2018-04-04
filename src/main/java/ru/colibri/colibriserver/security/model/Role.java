@@ -6,28 +6,47 @@ import org.springframework.security.core.GrantedAuthority;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
-@Entity(name = "security_roles")
+@Entity
+@Table(name = "security_roles")
 public class Role implements GrantedAuthority, Serializable {
+
     private static final long serialVersionUID = -1562723181766676778L;
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "role_id")
-    Integer id;
+    private Integer id;
 
     @Column(name = "role_name")
     private String role;
 
     @JsonIgnore
     @ManyToMany(mappedBy = "roles")
-    private List<User> users = new ArrayList<>();
+    private Set<User> users = new HashSet<>();
 
     public Role() {}
 
     public Role(String role) {
         this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return "id: " + id.toString()+
+                ", role: " + role;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getRole() {
@@ -38,11 +57,11 @@ public class Role implements GrantedAuthority, Serializable {
         this.role = role;
     }
 
-    public List<User> getUsers() {
+    public Set<User> getUsers() {
         return users;
     }
 
-    public void setUsers(List<User> users) {
+    public void setUsers(Set<User> users) {
         this.users = users;
     }
 
@@ -59,6 +78,44 @@ public class Role implements GrantedAuthority, Serializable {
     public void removeUser(User user) {
         this.users.remove(user);
         user.getRoles().remove(this);
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        result = prime * result + ((role == null) ? 0 : role.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+
+        if (this == obj)
+            return true;
+
+        if (obj == null)
+            return false;
+
+        if (!(obj instanceof Role))
+            return false;
+
+        Role other = (Role) obj;
+
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
+            return false;
+
+        if (role == null) {
+            if (other.role != null)
+                return false;
+        } else if (!role.equals(other.role))
+            return false;
+
+        return true;
     }
 
     @Override
