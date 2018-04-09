@@ -10,12 +10,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import ru.colibri.colibriserver.dao.BookDao;
+import ru.colibri.colibriserver.domain.TestClass;
 import ru.colibri.colibriserver.model.Book;
 
 import java.util.List;
 
 @Controller
 public class TestController {
+
+    @Autowired
+    TestClass testClass;
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -35,10 +39,8 @@ public class TestController {
         book.setTitle("Там");
         book.setId(10);
 
-        List<Book> books  = bookDao.findByAuthorReturnList("Гагарин"); // working
+        List<Book> books = bookDao.findByAuthorReturnList("Гагарин"); // working
 
-        log.info(books.toString());
-        log.debug("debug!");
         return books;
     }
 
@@ -46,6 +48,8 @@ public class TestController {
     @RequestMapping("/test")
     public String showHello(Model model) {
         model.addAttribute("message", "ТЕСТ Ок");
+        model.addAttribute("date", testClass.getDate());
+        System.err.println(testClass.getI());
 
         return "test";
     }

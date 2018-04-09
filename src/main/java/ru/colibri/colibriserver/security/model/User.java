@@ -54,7 +54,7 @@ public class User implements Serializable {
         return "id: " + id +
                 ", name: " + email +
                 ", username: " + username +
-                ", password: " + password +
+                ", password: ******" +
                 ", enabled: " + enabled +
                 ", roles " + roles.toString();
 

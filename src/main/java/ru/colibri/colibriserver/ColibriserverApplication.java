@@ -12,7 +12,6 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 import ru.colibri.colibriserver.security.RoleToUserProfileConverter;
 
-@Configuration
 @SpringBootApplication
 public class ColibriserverApplication {
 
