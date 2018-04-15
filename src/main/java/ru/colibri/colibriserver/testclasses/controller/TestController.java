@@ -1,4 +1,4 @@
-package ru.colibri.colibriserver.controller.test;
+package ru.colibri.colibriserver.testclasses.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import ru.colibri.colibriserver.dao.BookDao;
-import ru.colibri.colibriserver.domain.TestClass;
-import ru.colibri.colibriserver.model.Book;
+import ru.colibri.colibriserver.testclasses.dao.BookDao;
+import ru.colibri.colibriserver.testclasses.domain.TestClass;
+import ru.colibri.colibriserver.testclasses.model.Book;
 
 import java.util.List;
 

@@ -20,10 +20,11 @@
 
 <div th:insert="~{_fragments :: top_menu}"></div>
 
-<div class="container" th:if="${successRemove}" >
+<div class="container" th:if="${successRemove}">
     <div class="alert alert-success alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                aria-hidden="true">&times;</span></button>Пользователь
+                aria-hidden="true">&times;</span></button>
+        Пользователь
         <strong th:text="${successRemove}">USER NAME'</strong> удален
     </div>
 </div>
@@ -39,27 +40,36 @@
             <table class="table table-hover" th:if="${not #lists.isEmpty(listUsers)}">
                 <tr>
                     <!--<th width="80">ID</th>-->
-                    <th width="320">Имя</th>
-                    <th width="20">Активен</th>
+                    <th width="220">Имя</th>
+                    <th width="20" align="center">Активен</th>
                     <th width="60">e-Mail</th>
                     <th width="200">Роли</th>
                     <th width="30"></th>
                 </tr>
                 <tr th:each="custom_user: ${listUsers}">
-                    <td><a th:href="@{'/admin/user_edit/' + ${custom_user.id}}" th:text="${custom_user.username}">User name'</a></td>
-                    <td><span th:if="${custom_user.enabled}" class="glyphicon glyphicon-ok"></span></td>
+                    <td><a th:href="@{'/admin/user_edit/' + ${custom_user.id}}" th:text="${custom_user.username}">User
+                        name'</a></td>
+                    <td align="center"><span th:if="${custom_user.enabled}" class="glyphicon glyphicon-ok"></span></td>
                     <td><span th:text=" ${custom_user.email}">User email'</span></td>
-                    <td><span th:each="custom_role: *{custom_user.roles}"><span th:text="*{custom_role.role}"
-                                                                                class="label label-pill label-success">ROLE NAME'</span> </span>
+                    <td><span th:each="custom_role: *{custom_user.roles}">
+                            <div th:switch="*{custom_role.role}">
+                                <span th:case="'ROLE_ADMIN'" th:text="*{custom_role.roleTitle}" class="label label-pill label-danger">ROLE ADMIN'</span>
+                                <span th:case="'ROLE_USER'" th:text="*{custom_role.roleTitle}" class="label label-pill label-success">ROLE USER'</span>
+                            </div>
+                        </span>
                     </td>
-                    <td><a th:href="@{'/admin/remove_user/' + ${custom_user.id} + '?user_name='+${custom_user.username}}"><span class="glyphicon glyphicon-remove" style="color: darkgray" data-placement="right" title="Удалить"></span></a></td>
+
+                    <td>
+                        <a th:href="@{'/admin/remove_user/' + ${custom_user.id} + '?user_name='+${custom_user.username}}"><span
+                                class="glyphicon glyphicon-remove" style="color: darkgray" data-placement="right"
+                                title="Удалить"></span></a></td>
                 </tr>
             </table>
 
 
         </div>
         <div class="my-sm-3">
-            <a href="/admin/user_edit/0" class="btn btn-success btn-block" role="button" aria-pressed="true">Добавить
+            <a href="/admin/user_edit/new_user" class="btn btn-success btn-block" role="button" aria-pressed="true">Добавить
                 пользователя</a>
         </div>
     </div>

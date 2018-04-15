@@ -1,4 +1,4 @@
-package ru.colibri.colibriserver.controller.test;
+package ru.colibri.colibriserver.testclasses.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import ru.colibri.colibriserver.dao.BookDao;
-import ru.colibri.colibriserver.model.Book;
+import ru.colibri.colibriserver.testclasses.dao.BookDao;
+import ru.colibri.colibriserver.testclasses.model.Book;
 
 @Controller
 public class BookController {

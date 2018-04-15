@@ -1,4 +1,4 @@
-package ru.colibri.colibriserver.domain;
+package ru.colibri.colibriserver.testclasses.domain;
 
 
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -8,8 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.Date;
 import java.util.Random;
 
-@Component
-@EnableScheduling
+
 public class TestClass {
 
     private int i;
@@ -30,7 +29,7 @@ public class TestClass {
         return this.date.toString();
     }
 
-    @Scheduled(fixedRate = 1000)
+    @Scheduled(fixedRate = 5000)
     private void Print (){
         Date date = new Date();
         this.date = date;

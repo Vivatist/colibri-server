@@ -25,6 +25,9 @@ public class Role implements GrantedAuthority, Serializable {
     @Column(name = "role_name")
     private String role;
 
+    @Column(name = "role_title")
+    private String roleTitle;
+
     @JsonIgnore
     @ManyToMany(mappedBy = "roles")
     private Set<User> users = new HashSet<>();
@@ -33,6 +36,15 @@ public class Role implements GrantedAuthority, Serializable {
 
     public Role(String role) {
         this.role = role;
+        this.role = role;
+    }
+
+    public String getRoleTitle() {
+        return roleTitle;
+    }
+
+    public void setRoleTitle(String roleTitle) {
+        this.roleTitle = roleTitle;
     }
 
     @Override
@@ -86,6 +98,7 @@ public class Role implements GrantedAuthority, Serializable {
         int result = 1;
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((role == null) ? 0 : role.hashCode());
+        result = prime * result + ((roleTitle == null) ? 0 : roleTitle.hashCode());
         return result;
     }
 

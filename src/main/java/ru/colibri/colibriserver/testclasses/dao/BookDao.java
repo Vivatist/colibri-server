@@ -1,11 +1,11 @@
-package ru.colibri.colibriserver.dao;
+package ru.colibri.colibriserver.testclasses.dao;
 
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
-import ru.colibri.colibriserver.model.Book;
+import ru.colibri.colibriserver.testclasses.model.Book;
 
 import java.util.List;
 

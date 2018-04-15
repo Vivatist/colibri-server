@@ -1,4 +1,4 @@
-package ru.colibri.colibriserver.model;
+package ru.colibri.colibriserver.testclasses.model;
 
 
 import lombok.Data;
