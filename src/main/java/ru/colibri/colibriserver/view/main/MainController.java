@@ -1,4 +1,4 @@
-package ru.colibri.colibriserver.controller;
+package ru.colibri.colibriserver.view.main;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

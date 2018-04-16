@@ -1,4 +1,4 @@
-package ru.colibri.colibriserver.security;
+package ru.colibri.colibriserver.view.adminMenu;
 
 
 import org.apache.commons.validator.routines.EmailValidator;
@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
+import ru.colibri.colibriserver.security.RoleRepository;
+import ru.colibri.colibriserver.security.UserRepository;
 import ru.colibri.colibriserver.security.model.Role;
 import ru.colibri.colibriserver.security.model.User;
 

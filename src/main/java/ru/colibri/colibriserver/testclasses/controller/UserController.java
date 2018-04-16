@@ -19,7 +19,7 @@ public class UserController {
     @Autowired
     private CustomUserDetailsService customUserDetailsService;
 
-    // Encryte Password with BCryptPasswordEncoder
+    // Encrypte Password with BCryptPasswordEncoder
     public static String encryptePassword(String password) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         return encoder.encode(password);

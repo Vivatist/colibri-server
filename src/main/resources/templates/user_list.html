@@ -62,7 +62,7 @@
                     <td>
                         <a th:href="@{'/admin/remove_user/' + ${custom_user.id} + '?user_name='+${custom_user.username}}"><span
                                 class="glyphicon glyphicon-remove" style="color: darkgray" data-placement="right"
-                                title="Удалить"></span></a></td>
+                                title="Удалить пользователя"></span></a></td>
                 </tr>
             </table>
 
@@ -75,6 +75,7 @@
     </div>
 </div>
 
+<div th:text="${currentUser}">current user'</div>
 
 </body>
 </html>

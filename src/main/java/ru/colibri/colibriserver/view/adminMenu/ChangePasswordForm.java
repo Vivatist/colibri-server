@@ -1,4 +1,4 @@
-package ru.colibri.colibriserver.security;
+package ru.colibri.colibriserver.view.adminMenu;
 
 
 import javax.validation.constraints.NotNull;

@@ -1,8 +1,9 @@
-package ru.colibri.colibriserver.controller;
+package ru.colibri.colibriserver.view.adminMenu;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -12,12 +13,11 @@ import ru.colibri.colibriserver.security.*;
 import ru.colibri.colibriserver.security.model.Role;
 import ru.colibri.colibriserver.security.model.User;
 
-import javax.validation.Valid;
+import java.security.Principal;
 import java.util.HashSet;
 import java.util.Set;
 
 
-import static ru.colibri.colibriserver.testclasses.controller.UserController.encryptePassword;
 
 @Controller
 @RequestMapping("/admin")
@@ -69,6 +69,7 @@ public class AdminController {
 
         model.addAttribute("user", new User());
         model.addAttribute("listUsers", this.userRepository.findAllByOrderById());
+
         return "user_list";
     }
 
@@ -109,10 +110,11 @@ public class AdminController {
     }
 
 
+
     //Сохраняет новый пароль
     @RequestMapping(value = "user_edit/save_change_password", method = RequestMethod.POST)
-    public String saveChangePassword(ChangePasswordForm changePasswordForm, BindingResult result) {
-
+    public String saveChangePassword(ChangePasswordForm changePasswordForm,
+                                     BindingResult result) {
 
         changePasswordValidator.validate(changePasswordForm, result);
 
@@ -122,9 +124,15 @@ public class AdminController {
             return "user_edit_password";
         }
 
+        User user = userRepository.findById(changePasswordForm.getUserId());
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        user.setPassword(encoder.encode(changePasswordForm.getNewPassword()));
+        userRepository.save(user);
 
-        return "redirect:../user_list";
+        log.info("Change password for user" + user.toString());
+        return "redirect:../user_edit/" + changePasswordForm.getUserId() + "?successChangePassword";
     }
+
 
 
     //Выводит форму добавления нового пользователя
@@ -147,6 +155,7 @@ public class AdminController {
     }
 
 
+
     //Сохраняет форму с новым пользователем
     @RequestMapping(value = "/user_edit/save_new", method = RequestMethod.POST)
     public String addUser(@ModelAttribute("user") User user, Model model, BindingResult result) {
@@ -162,7 +171,8 @@ public class AdminController {
             return "user_new";
         }
 
-        user.setPassword(encryptePassword(user.getPassword()));
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        user.setPassword(encoder.encode(user.getPassword()));
         log.debug("Add new user: " + user.toString());
 
         Set<Role> roles = new HashSet<>();
@@ -178,10 +188,13 @@ public class AdminController {
 
     }
 
+
+
     //Выводит форму изменения пользователя
     @Transactional
     @RequestMapping("user_edit/{id}")
-    public String formEditUser(@PathVariable("id") int id, Model model) {
+    public String formEditUser(@PathVariable("id") int id, Model model,
+                               @RequestParam(value = "successChangePassword", required = false) String successChangePassword) {
 
         User user = userRepository.findById(id);
 
@@ -189,9 +202,13 @@ public class AdminController {
 
         model.addAttribute("user", user);
         model.addAttribute("userRoles", roles);
+        model.addAttribute("successChangePassword", successChangePassword);
 
         return "user_edit";
     }
+
+
+
 
     //Сохраняет форму с измененным пользователем
     @RequestMapping(value = "/user_edit/save_changes", method = RequestMethod.POST)
