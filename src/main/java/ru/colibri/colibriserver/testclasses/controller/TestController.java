@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import ru.colibri.colibriserver.testclasses.colibri.Colibri;
 import ru.colibri.colibriserver.testclasses.dao.BookDao;
 import ru.colibri.colibriserver.testclasses.domain.TestClass;
 import ru.colibri.colibriserver.testclasses.model.Book;
@@ -20,6 +21,7 @@ public class TestController {
 
     @Autowired
     TestClass testClass;
+
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -51,10 +53,11 @@ public class TestController {
         model.addAttribute("date", testClass.getDate());
         System.err.println(testClass.getI());
 
+        Colibri colibri = new Colibri();
+        colibri.start();
+
         return "test";
     }
-
-
 
 
 }

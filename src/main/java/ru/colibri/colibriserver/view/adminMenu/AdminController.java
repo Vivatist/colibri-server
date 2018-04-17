@@ -1,7 +1,8 @@
 package ru.colibri.colibriserver.view.adminMenu;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -13,19 +14,17 @@ import ru.colibri.colibriserver.security.*;
 import ru.colibri.colibriserver.security.model.Role;
 import ru.colibri.colibriserver.security.model.User;
 
-import java.security.Principal;
 import java.util.HashSet;
 import java.util.Set;
-
 
 
 @Controller
 @RequestMapping("/admin")
 @Transactional
+@Slf4j
 public class AdminController {
 
 
-    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     private final ChangeUserValidator changeUserValidator;
 
