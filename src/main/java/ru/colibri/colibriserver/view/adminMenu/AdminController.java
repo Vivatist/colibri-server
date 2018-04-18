@@ -24,8 +24,6 @@ import java.util.Set;
 @Slf4j
 public class AdminController {
 
-
-
     private final ChangeUserValidator changeUserValidator;
 
     private final NewUserValidator newUserValidator;
@@ -58,7 +56,7 @@ public class AdminController {
     @RequestMapping("/admin_menu")
     public String showAdminMenu(Model model) {
 
-        return "admin_menu";
+        return "admin/admin_menu";
     }
 
 
@@ -69,7 +67,7 @@ public class AdminController {
         model.addAttribute("user", new User());
         model.addAttribute("listUsers", this.userRepository.findAllByOrderById());
 
-        return "user_list";
+        return "admin/users/user_list";
     }
 
 
@@ -91,7 +89,7 @@ public class AdminController {
         model.addAttribute("listUsers", this.userRepository.findAllByOrderById());
         model.addAttribute("successRemove", user_name);
 
-        return "user_list";
+        return "admin/users/user_list";
     }
 
 
@@ -105,7 +103,7 @@ public class AdminController {
         changePasswordForm.setUserId(id);
         model.addAttribute("changePasswordForm", changePasswordForm);
 
-        return "user_edit_password";
+        return "admin/users/user_edit_password";
     }
 
 
@@ -120,7 +118,7 @@ public class AdminController {
         if (result.hasErrors()) {
             log.debug("Error changing user password: " + result.toString());
             //возваращаемся обратно с ошибкой
-            return "user_edit_password";
+            return "admin/users/user_edit_password";
         }
 
         User user = userRepository.findById(changePasswordForm.getUserId());
@@ -150,7 +148,7 @@ public class AdminController {
         model.addAttribute("user", user);
         model.addAttribute("userRoles", roles);
 
-        return "user_new";
+        return "admin/users/user_new";
     }
 
 
@@ -167,7 +165,7 @@ public class AdminController {
             Set<Role> roles = roleRepository.findAllByOrderById();
             model.addAttribute("userRoles", roles);
             //возваращаемся обратно с ошибко
-            return "user_new";
+            return "admin/users/user_new";
         }
 
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -203,7 +201,7 @@ public class AdminController {
         model.addAttribute("userRoles", roles);
         model.addAttribute("successChangePassword", successChangePassword);
 
-        return "user_edit";
+        return "admin/users/user_edit";
     }
 
 
@@ -223,7 +221,7 @@ public class AdminController {
             Set<Role> roles = roleRepository.findAllByOrderById();
             model.addAttribute("userRoles", roles);
             //возваращаемся обратно с ошибкой
-            return "user_edit";
+            return "admin/users/user_edit";
         }
 
         log.debug("Edit user: " + user.toString());

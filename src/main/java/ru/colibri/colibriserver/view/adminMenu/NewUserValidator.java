@@ -21,8 +21,6 @@ public class NewUserValidator implements Validator {
         return User.class.isAssignableFrom(clazz);
     }
 
-
-
     public void validate(Object target,  Errors errors) {
 
         User user = (User) target;

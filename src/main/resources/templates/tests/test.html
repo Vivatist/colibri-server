@@ -23,7 +23,12 @@
                 <li><a href="/test_json">JSON</a></li>
                 <li><a href="/test_json" th:text="${date}">DATE'</a></li>
             </ul>
+
+            <div th:each="arduino: ${colibri.getSetArduino()}">
+                <span th:text="${arduino.toString()} + ': ' + ${arduino.getName()}"> NAME ARDUINO'</span>
+            </div>
         </div>
+
     </div>
 </div>
 

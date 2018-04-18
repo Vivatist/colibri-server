@@ -22,6 +22,10 @@ public class TestController {
     @Autowired
     TestClass testClass;
 
+    @Autowired
+    Colibri colibri;
+
+
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -51,12 +55,13 @@ public class TestController {
     public String showHello(Model model) {
         model.addAttribute("message", "ТЕСТ Ок");
         model.addAttribute("date", testClass.getDate());
-        System.err.println(testClass.getI());
+        //System.err.println(testClass.getI());
 
-        Colibri colibri = new Colibri();
+        model.addAttribute("colibri", colibri);
+
         colibri.start();
 
-        return "test";
+        return "tests/test";
     }
 
 

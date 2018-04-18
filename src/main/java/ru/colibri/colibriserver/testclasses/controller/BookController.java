@@ -22,7 +22,7 @@ public class BookController {
         model.addAttribute("book", new Book());
         model.addAttribute("listBooks", this.bookDao.findAllByOrderById());
 
-        return "books";
+        return "tests/books";
     }
 
     @RequestMapping(value = "/books/add", method = RequestMethod.POST)
@@ -50,13 +50,13 @@ public class BookController {
         model.addAttribute("book", this.bookDao.findById(id));
         model.addAttribute("listBooks", this.bookDao.findAllByOrderById());
 
-        return "books";
+        return "tests/books";
     }
 
     @RequestMapping("bookdata/{id}")
     public String bookData(@PathVariable("id") int id, Model model){
         model.addAttribute("book", this.bookDao.findById(id));
 
-        return "bookdata";
+        return "tests/bookdata";
     }
 }
