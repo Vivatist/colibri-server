@@ -1,8 +1,5 @@
-package ru.colibri.colibriserver.testclasses.colibri.model;
+package ru.colibri.colibriserver.model;
 
-
-import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;

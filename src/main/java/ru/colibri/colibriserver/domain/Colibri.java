@@ -1,11 +1,12 @@
-package ru.colibri.colibriserver.testclasses.colibri;
+package ru.colibri.colibriserver.domain;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-import ru.colibri.colibriserver.testclasses.colibri.model.*;
+import ru.colibri.colibriserver.dao.ArduinoRepository;
+import ru.colibri.colibriserver.model.Arduino;
 
 import java.util.ArrayList;
 import java.util.List;

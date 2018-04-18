@@ -1,11 +1,8 @@
-package ru.colibri.colibriserver.testclasses.colibri.model;
+package ru.colibri.colibriserver.model;
 
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.Transient;
-import java.util.Timer;
-import java.util.TimerTask;
 
 
 @Entity

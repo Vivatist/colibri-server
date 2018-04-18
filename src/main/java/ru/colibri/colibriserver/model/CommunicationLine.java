@@ -1,4 +1,4 @@
-package ru.colibri.colibriserver.testclasses.colibri.model;
+package ru.colibri.colibriserver.model;
 
 import lombok.Getter;
 import lombok.Setter;

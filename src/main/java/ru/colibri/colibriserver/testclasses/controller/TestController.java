@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import ru.colibri.colibriserver.testclasses.colibri.Colibri;
+import ru.colibri.colibriserver.domain.Colibri;
 import ru.colibri.colibriserver.testclasses.dao.BookDao;
 import ru.colibri.colibriserver.testclasses.domain.TestClass;
 import ru.colibri.colibriserver.testclasses.model.Book;

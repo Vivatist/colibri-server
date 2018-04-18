@@ -1,9 +1,7 @@
-package ru.colibri.colibriserver.testclasses.colibri.model;
+package ru.colibri.colibriserver.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.extern.slf4j.Slf4j;
-import ru.colibri.colibriserver.testclasses.colibri.model.CommunicationLine;
 
 import javax.persistence.*;
 

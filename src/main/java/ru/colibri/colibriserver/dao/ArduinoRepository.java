@@ -1,9 +1,9 @@
-package ru.colibri.colibriserver.testclasses.colibri;
+package ru.colibri.colibriserver.dao;
 
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-import ru.colibri.colibriserver.testclasses.colibri.model.Arduino;
+import ru.colibri.colibriserver.model.Arduino;
 
 import java.util.Set;
 
